@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Task Kỹ Thuật | TechZone</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="tech-task-page">
+    <div class="container">
+      <div class="page-header">
+        <h1><i class="fas fa-tools"></i> Quản Lý Task Kỹ Thuật</h1>
+        <div class="header-actions">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm task...">
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="filter-dropdown">
+            <select>
+              <option value="all">Tất cả trạng thái</option>
+              <option value="new">Mới</option>
+              <option value="in-progress">Đang xử lý</option>
+              <option value="pending">Chờ phụ kiện</option>
+              <option value="completed">Hoàn thành</option>
+              <option value="cancelled">Đã hủy</option>
+            </select>
+          </div>
+          <button class="btn-add-task">
+            <i class="fas fa-plus"></i> Tạo task mới
+          </button>
+        </div>
+      </div>
+
+      <!-- Task Statistics -->
+      <div class="task-stats">
+        <div class="stat-card">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Task mới</div>
+          <div class="stat-icon new"><i class="fas fa-exclamation-circle"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Đang xử lý</div>
+          <div class="stat-icon in-progress"><i class="fas fa-spinner"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Chờ phụ kiện</div>
+          <div class="stat-icon pending"><i class="fas fa-clock"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Hoàn thành</div>
+          <div class="stat-icon completed"><i class="fas fa-check-circle"></i></div>
+        </div>
+      </div>
+
+      <!-- Tasks Table -->
+      <div class="tasks-table-container">
+        <table class="tasks-table">
+          <thead>
+            <tr>
+              <th>Mã Task</th>
+              <th>Sản phẩm</th>
+              <th>Mô tả lỗi</th>
+              <th>Ngày tạo</th>
+              <th>Hạn xử lý</th>
+              <th>Người tạo</th>
+              <th>Người xử lý</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Task 1 -->
+            <tr>
+              <td>#TK20230001</td>
+              <td>
+                <div class="product-info">
+                  <div class="product-name">Laptop Asus ROG Strix G15</div>
+                  <div class="product-id">Mã SP: AS12345</div>
+                </div>
+              </td>
+              <td class="issue-description">Không lên nguồn, nghi do lỗi mainboard</td>
+              <td>15/10/2023</td>
+              <td>20/10/2023</td>
+              <td>Nguyễn Văn A</td>
+              <td>
+                <select class="assign-select">
+                  <option value="">-- Chọn --</option>
+                  <option value="user1">Trần Kỹ Thuật</option>
+                  <option value="user2">Lê Sửa Chữa</option>
+                  <option value="user3">Phạm Bảo Hành</option>
+                </select>
+              </td>
+              <td><span class="status-badge new">Mới</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-detail"><i class="fas fa-eye"></i></button>
+                  <button class="btn-start"><i class="fas fa-play"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Task 2 -->
+            <tr>
+              <td>#TK20230002</td>
+              <td>
+                <div class="product-info">
+                  <div class="product-name">PC Gaming Intel Core i9</div>
+                  <div class="product-id">Mã SP: PC67890</div>
+                </div>
+              </td>
+              <td class="issue-description">Màn hình bị giật, thay card đồ họa</td>
+              <td>14/10/2023</td>
+              <td>18/10/2023</td>
+              <td>Trần Thị B</td>
+              <td>
+                <select class="assign-select">
+                  <option value="user1" selected>Trần Kỹ Thuật</option>
+                  <option value="user2">Lê Sửa Chữa</option>
+                  <option value="user3">Phạm Bảo Hành</option>
+                </select>
+              </td>
+              <td><span class="status-badge in-progress">Đang xử lý</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-detail"><i class="fas fa-eye"></i></button>
+                  <button class="btn-pause"><i class="fas fa-pause"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Task 3 -->
+            <tr>
+              <td>#TK20230003</td>
+              <td>
+                <div class="product-info">
+                  <div class="product-name">Bàn phím Razer BlackWidow</div>
+                  <div class="product-id">Mã SP: BP54321</div>
+                </div>
+              </td>
+              <td class="issue-description">Một số phím không hoạt động, cần thay switch</td>
+              <td>13/10/2023</td>
+              <td>17/10/2023</td>
+              <td>Lê Văn C</td>
+              <td>
+                <select class="assign-select">
+                  <option value="user2" selected>Lê Sửa Chữa</option>
+                  <option value="user1">Trần Kỹ Thuật</option>
+                  <option value="user3">Phạm Bảo Hành</option>
+                </select>
+              </td>
+              <td><span class="status-badge pending">Chờ phụ kiện</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-detail"><i class="fas fa-eye"></i></button>
+                  <button class="btn-complete"><i class="fas fa-check"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Task 4 -->
+            <tr>
+              <td>#TK20230004</td>
+              <td>
+                <div class="product-info">
+                  <div class="product-name">Chuột Logitech G502</div>
+                  <div class="product-id">Mã SP: CH98765</div>
+                </div>
+              </td>
+              <td class="issue-description">Đèn LED không sáng, đã thay cảm biến</td>
+              <td>10/10/2023</td>
+              <td>15/10/2023</td>
+              <td>Phạm Thị D</td>
+              <td>
+                <select class="assign-select">
+                  <option value="user3" selected>Phạm Bảo Hành</option>
+                  <option value="user1">Trần Kỹ Thuật</option>
+                  <option value="user2">Lê Sửa Chữa</option>
+                </select>
+              </td>
+              <td><span class="status-badge completed">Hoàn thành</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-detail"><i class="fas fa-eye"></i></button>
+                  <button class="btn-reopen"><i class="fas fa-redo"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="page-nav" disabled><i class="fas fa-angle-left"></i></button>
+        <button class="page-number active">1</button>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+        <button class="page-nav"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script>
+    fetch("admin-header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+        const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute("href").split("?")[0];
+          if (linkPath === currentPath) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+</body>
+</html>

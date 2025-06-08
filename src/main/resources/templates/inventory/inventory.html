@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Kho | TechZone</title>
+  <link rel="stylesheet" th:href="@{/styles.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Header -->
+<div id="header"></div>
+
+<!-- Main Content -->
+<main class="inventory-page">
+  <div class="container">
+    <div class="page-header">
+      <h1><i class="fas fa-boxes"></i> Quản Lý Kho Hàng</h1>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm sản phẩm...">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="filter-dropdown">
+          <select id="category-filter">
+            <option value="all">Tất cả danh mục</option>
+            <option value="laptop">Laptop</option>
+            <option value="pc">PC Gaming</option>
+            <option value="keyboard">Bàn phím</option>
+            <option value="mouse">Chuột</option>
+          </select>
+        </div>
+        <div class="store-filter">
+          <select id="store-filter">
+            <option value="all">Tất cả cơ sở</option>
+            <option value="hanoi">Hà Nội</option>
+            <option value="hcm">TP.HCM</option>
+            <option value="danang">Đà Nẵng</option>
+          </select>
+        </div>
+        <button class="btn-export">
+          <i class="fas fa-file-export"></i> Xuất báo cáo
+        </button>
+      </div>
+    </div>
+
+    <!-- Inventory Summary -->
+    <!-- ... (giữ nguyên phần summary) ... -->
+    <div class="inventory-summary">
+
+      <div class="summary-card">
+        <div class="summary-icon">
+          <i class="fas fa-box-open"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">1,245</div>
+          <div class="summary-label">Tổng sản phẩm</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">3</div>
+          <div class="summary-label">Cơ sở</div>
+        </div>
+      </div>
+      <div class="summary-card warning">
+        <div class="summary-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">24</div>
+          <div class="summary-label">Sắp hết hàng</div>
+        </div>
+      </div>
+      <div class="summary-card danger">
+        <div class="summary-icon">
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">8</div>
+          <div class="summary-label">Hết hàng</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="inventory-table-container">
+      <table class="inventory-table">
+        <thead>
+        <tr>
+          <th>Mã SP</th>
+          <th>Sản phẩm</th>
+          <th>Kho hàng</th> <th>Tổng cộng</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="productSummary : ${productSummaries}">
+          <td th:text="${productSummary.product.id}">AS12345</td>
+
+          <td>
+            <div class="product-info">
+              <div class="product-name" th:text="${productSummary.product.title}">Laptop Asus ROG Strix G15</div>
+              <div class="product-category" th:text="${productSummary.product.category?.name ?: 'N/A'}">Laptop Gaming</div>
+            </div>
+          </td>
+
+          <td>
+            <div class="store-inventory">
+              <div class="store-summary" data-expanded="false">
+                <span class="store-count" th:text="${#lists.size(productSummary.inventories)} + ' kho'">3 kho</span>
+                <button class="btn-toggle">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="store-list">
+                <div class="store-item" th:each="inventory : ${productSummary.inventories}">
+                  <span class="store-name" th:text="${inventory.store?.name ?: 'N/A'}">Tên kho</span>
+                  <div class="stock-quantity">
+                    <span class="quantity" th:text="${inventory.quantity}">15</span>
+                    <button class="btn-adjust"
+                            th:data-store="${inventory.store?.id}"
+                            th:data-product="${productSummary.product.id}">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+          <td th:text="${productSummary.totalQuantityAcrossStores}">45</td>
+
+          <td>
+                <span class="status-badge"
+                      th:classappend="${productSummary.totalQuantityAcrossStores > 0 ? 'in-stock' : 'out-of-stock'}"
+                      th:text="${productSummary.totalQuantityAcrossStores > 0 ? 'Còn hàng' : 'Hết hàng'}">Còn hàng</span>
+          </td>
+
+          <td>
+            <a th:href="@{/products/edit/{id}(id=${productSummary.product.id})}" class="btn btn-edit">
+              <i class="fas fa-edit"></i> Sửa
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <!-- ... (giữ nguyên phần pagination) ... -->
+    <div class="pagination">
+      <button class="page-nav" disabled><i class="fas fa-angle-left"></i></button>
+      <button class="page-number active">1</button>
+      <button class="page-number">2</button>
+      <button class="page-number">3</button>
+      <button class="page-number">4</button>
+      <button class="page-nav"><i class="fas fa-angle-right"></i></button>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<script>
+  // JavaScript để xử lý việc mở/đóng danh sách kho
+  document.querySelectorAll('.store-summary').forEach(summary => {
+    summary.addEventListener('click', () => {
+      const storeList = summary.nextElementSibling;
+      const isExpanded = summary.dataset.expanded === 'true';
+      summary.dataset.expanded = !isExpanded;
+      storeList.classList.toggle('expanded', !isExpanded);
+      summary.querySelector('i').classList.toggle('fa-chevron-down', isExpanded);
+      summary.querySelector('i').classList.toggle('fa-chevron-up', !isExpanded);
+    });
+  });
+</script>
+
+<script>
+  // JavaScript cho chức năng hiển thị/ẩn danh sách kho hàng
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.btn-toggle');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const storeSummary = this.closest('.store-summary');
+        const storeList = storeSummary.nextElementSibling;
+        const isExpanded = storeSummary.getAttribute('data-expanded') === 'true';
+
+        if (isExpanded) {
+          storeList.style.display = 'none';
+          this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+          storeSummary.setAttribute('data-expanded', 'false');
+        } else {
+          storeList.style.display = 'block';
+          this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+          storeSummary.setAttribute('data-expanded', 'true');
+        }
+      });
+    });
+
+    // Đóng tất cả danh sách khi click ra ngoài
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.store-inventory')) {
+        document.querySelectorAll('.store-list').forEach(list => {
+          list.style.display = 'none';
+        });
+        document.querySelectorAll('.store-summary').forEach(summary => {
+          summary.setAttribute('data-expanded', 'false');
+          summary.querySelector('.btn-toggle').innerHTML = '<i class="fas fa-chevron-down"></i>';
+        });
+      }
+    });
+  });
+
+  // ... (giữ nguyên phần fetch header và footer) ...
+
+  fetch("admin-header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+              const linkPath = link.getAttribute("href").split("?")[0];
+              if (linkPath === currentPath) {
+                link.classList.add("active");
+              }
+            });
+          });
+
+  fetch("footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+
+</script>
+
+<script>
+  // JavaScript để xử lý việc mở/đóng danh sách kho (đã có)
+  document.querySelectorAll('.store-summary').forEach(summary => {
+    summary.addEventListener('click', () => {
+      const storeList = summary.nextElementSibling;
+      const isExpanded = summary.dataset.expanded === 'true';
+      summary.dataset.expanded = !isExpanded;
+      storeList.classList.toggle('expanded', !isExpanded);
+      summary.querySelector('i').classList.toggle('fa-chevron-down', isExpanded);
+      summary.querySelector('i').classList.toggle('fa-chevron-up', !isExpanded);
+    });
+  });
+
+  // JavaScript cho chức năng hiển thị/ẩn danh sách kho hàng (đã có)
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.btn-toggle');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const storeSummary = this.closest('.store-summary');
+        const storeList = storeSummary.nextElementSibling;
+        const isExpanded = storeSummary.getAttribute('data-expanded') === 'true';
+
+        if (isExpanded) {
+          storeList.style.display = 'none';
+          this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+          storeSummary.setAttribute('data-expanded', 'false');
+        } else {
+          storeList.style.display = 'block';
+          this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+          storeSummary.setAttribute('data-expanded', 'true');
+        }
+      });
+    });
+
+    // Đóng tất cả danh sách khi click ra ngoài (đã có)
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.store-inventory')) {
+        document.querySelectorAll('.store-list').forEach(list => {
+          list.style.display = 'none';
+        });
+        document.querySelectorAll('.store-summary').forEach(summary => {
+          summary.setAttribute('data-expanded', 'false');
+          summary.querySelector('.btn-toggle').innerHTML = '<i class="fas fa-chevron-down"></i>';
+        });
+      }
+    });
+
+    // --- BẮT ĐẦU ĐOẠN CODE MỚI CHO CHỨC NĂNG ĐIỀU CHỈNH SỐ LƯỢNG ---
+    const adjustButtons = document.querySelectorAll('.btn-adjust');
+
+    adjustButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const productId = this.dataset.product;
+        const storeId = this.dataset.store;
+        const currentQuantityElement = this.closest('.stock-quantity').querySelector('.quantity');
+        const currentQuantity = parseInt(currentQuantityElement.textContent);
+
+        const newQuantity = prompt(`Nhập số lượng mới cho sản phẩm ID ${productId} tại kho ID ${storeId}:`, currentQuantity);
+
+        // Kiểm tra xem người dùng có nhập số lượng hợp lệ không
+        if (newQuantity !== null && !isNaN(newQuantity) && newQuantity.trim() !== '') {
+          const quantityInt = parseInt(newQuantity);
+
+          // Gửi dữ liệu lên server bằng Fetch API
+          fetch('/inventory/adjust', { // Đây là URL của endpoint mới trên server
+            method: 'POST', // Hoặc 'PUT' tùy theo bạn định nghĩa ở server
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              productId: productId,
+              storeId: storeId,
+              quantity: quantityInt
+            }),
+          })
+                  .then(response => {
+                    if (!response.ok) {
+                      // Nếu server trả về lỗi (ví dụ: 400, 500)
+                      return response.text().then(text => { throw new Error(text) });
+                    }
+                    return response.json(); // Giả định server trả về JSON (đối tượng Inventory đã cập nhật)
+                  })
+                  .then(data => {
+                    alert('Cập nhật số lượng thành công!');
+                    // Tải lại trang để thấy các thay đổi được cập nhật đầy đủ (đơn giản nhất)
+                    window.location.reload();
+                    // Hoặc bạn có thể cập nhật trực tiếp trên UI mà không cần tải lại trang
+                    // currentQuantityElement.textContent = data.quantity; // Cập nhật số lượng hiển thị
+                    // Cần tính toán lại tổng số lượng và trạng thái nếu muốn cập nhật đầy đủ trên UI
+                  })
+                  .catch(error => {
+                    console.error('Lỗi khi cập nhật số lượng:', error);
+                    alert('Lỗi khi cập nhật số lượng: ' + error.message);
+                  });
+        } else if (newQuantity !== null) { // Người dùng không nhập gì hoặc nhập không phải số
+          alert('Số lượng không hợp lệ. Vui lòng nhập một số.');
+        }
+      });
+    });
+    // --- KẾT THÚC ĐOẠN CODE MỚI ---
+  });
+
+  // ... (giữ nguyên phần fetch header và footer) ...
+  fetch("/admin-header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+              const linkPath = link.getAttribute("href").split("?")[0];
+              if (linkPath === currentPath) {
+                link.classList.add("active");
+              }
+            });
+          });
+
+  fetch("/footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+</script>
+
+<script>
+  // JavaScript để xử lý việc mở/đóng danh sách kho (đã có)
+  document.querySelectorAll('.store-summary').forEach(summary => {
+    summary.addEventListener('click', () => {
+      const storeList = summary.nextElementSibling;
+      const isExpanded = summary.dataset.expanded === 'true';
+      summary.dataset.expanded = !isExpanded;
+      storeList.classList.toggle('expanded', !isExpanded);
+      summary.querySelector('i').classList.toggle('fa-chevron-down', isExpanded);
+      summary.querySelector('i').classList.toggle('fa-chevron-up', !isExpanded);
+    });
+  });
+
+  // JavaScript cho chức năng hiển thị/ẩn danh sách kho hàng (đã có)
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.btn-toggle');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const storeSummary = this.closest('.store-summary');
+        const storeList = storeSummary.nextElementSibling;
+        const isExpanded = storeSummary.getAttribute('data-expanded') === 'true';
+
+        if (isExpanded) {
+          storeList.style.display = 'none';
+          this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+          storeSummary.setAttribute('data-expanded', 'false');
+        } else {
+          storeList.style.display = 'block';
+          this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+          storeSummary.setAttribute('data-expanded', 'true');
+        }
+      });
+    });
+
+    // Đóng tất cả danh sách khi click ra ngoài (đã có)
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.store-inventory')) {
+        document.querySelectorAll('.store-list').forEach(list => {
+          list.style.display = 'none';
+        });
+        document.querySelectorAll('.store-summary').forEach(summary => {
+          summary.setAttribute('data-expanded', 'false');
+          summary.querySelector('.btn-toggle').innerHTML = '<i class="fas fa-chevron-down"></i>';
+        });
+      }
+    });
+
+    // --- BẮT ĐẦU ĐOẠN CODE MỚI CHO CHỨC NĂNG ĐIỀU CHỈNH SỐ LƯỢNG ---
+    const adjustButtons = document.querySelectorAll('.btn-adjust');
+
+    adjustButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const productId = this.dataset.product;
+        const storeId = this.dataset.store;
+        const currentQuantityElement = this.closest('.stock-quantity').querySelector('.quantity');
+        const currentQuantity = parseInt(currentQuantityElement.textContent);
+
+        const newQuantity = prompt(`Nhập số lượng mới cho sản phẩm ID ${productId} tại kho ID ${storeId}:`, currentQuantity);
+
+        // Kiểm tra xem người dùng có nhập số lượng hợp lệ không
+        if (newQuantity !== null && !isNaN(newQuantity) && newQuantity.trim() !== '') {
+          const quantityInt = parseInt(newQuantity);
+
+          // Gửi dữ liệu lên server bằng Fetch API
+          fetch('/inventory/adjust', { // Đây là URL của endpoint mới trên server
+            method: 'POST', // Hoặc 'PUT' tùy theo bạn định nghĩa ở server
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              productId: productId,
+              storeId: storeId,
+              quantity: quantityInt
+            }),
+          })
+                  .then(response => {
+                    if (!response.ok) {
+                      // Nếu server trả về lỗi (ví dụ: 400, 500)
+                      return response.text().then(text => { throw new Error(text) });
+                    }
+                    return response.json(); // Giả định server trả về JSON (đối tượng Inventory đã cập nhật)
+                  })
+                  .then(data => {
+                    alert('Cập nhật số lượng thành công!');
+                    // Tải lại trang để thấy các thay đổi được cập nhật đầy đủ (đơn giản nhất)
+                    window.location.reload();
+                    // Hoặc bạn có thể cập nhật trực tiếp trên UI mà không cần tải lại trang
+                    // currentQuantityElement.textContent = data.quantity; // Cập nhật số lượng hiển thị
+                    // Cần tính toán lại tổng số lượng và trạng thái nếu muốn cập nhật đầy đủ trên UI
+                  })
+                  .catch(error => {
+                    console.error('Lỗi khi cập nhật số lượng:', error);
+                    alert('Lỗi khi cập nhật số lượng: ' + error.message);
+                  });
+        } else if (newQuantity !== null) { // Người dùng không nhập gì hoặc nhập không phải số
+          alert('Số lượng không hợp lệ. Vui lòng nhập một số.');
+        }
+      });
+    });
+    // --- KẾT THÚC ĐOẠN CODE MỚI ---
+  });
+
+  // ... (giữ nguyên phần fetch header và footer) ...
+  fetch("admin-header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+              const linkPath = link.getAttribute("href").split("?")[0];
+              if (linkPath === currentPath) {
+                link.classList.add("active");
+              }
+            });
+          });
+
+  fetch("footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+</script>
+
+</body>
+</html>

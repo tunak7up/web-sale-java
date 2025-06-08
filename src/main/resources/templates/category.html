@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${category.name + ' | TechZone'}">Danh Mục Sản Phẩm | TechZone</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<div id="header"></div>
+
+<section class="breadcrumb">
+    <div class="container">
+        <ul>
+            <li><a th:href="@{/}">Trang chủ</a></li>
+            <li><i class="fas fa-angle-right"></i></li>
+            <li th:text="${category.name}">Laptop Gaming</li>
+        </ul>
+    </div>
+</section>
+
+<main class="category-page">
+    <div class="container">
+        <div class="category-header">
+            <h1 th:text="${category.name}">Laptop Gaming</h1>
+            <p class="product-count" th:text="${'Hiển thị ' + productCount + ' sản phẩm'}">Hiển thị 12/36 sản phẩm</p>
+        </div>
+
+        <div class="category-content">
+            <aside class="filters-sidebar">
+                <div class="filter-group">
+                    <h3 class="filter-title">Bộ lọc</h3>
+                    <button class="clear-filters">Xóa bộ lọc</button>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-subtitle">Mức giá</h4>
+                    <div class="price-range">
+                        <div class="price-inputs">
+                            <input type="number" placeholder="Từ" class="min-price">
+                            <span>-</span>
+                            <input type="number" placeholder="Đến" class="max-price">
+                        </div>
+                        <button class="apply-price">Áp dụng</button>
+                    </div>
+                    <div class="price-options">
+                        <div class="price-option active">Dưới 10 triệu</div>
+                        <div class="price-option">10 - 20 triệu</div>
+                        <div class="price-option">20 - 30 triệu</div>
+                        <div class="price-option">Trên 30 triệu</div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-subtitle">Thương hiệu</h4>
+                    <div class="brand-options">
+                        <label class="checkbox-container">ASUS
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(12)</span>
+                        </label>
+                        <label class="checkbox-container">MSI
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(8)</span>
+                        </label>
+                        <label class="checkbox-container">Acer
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(6)</span>
+                        </label>
+                        <label class="checkbox-container">Dell
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(5)</span>
+                        </label>
+                        <label class="checkbox-container">HP
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(5)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-subtitle">CPU</h4>
+                    <div class="cpu-options">
+                        <label class="checkbox-container">Intel Core i5
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(15)</span>
+                        </label>
+                        <label class="checkbox-container">Intel Core i7
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(20)</span>
+                        </label>
+                        <label class="checkbox-container">Intel Core i9
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(8)</span>
+                        </label>
+                        <label class="checkbox-container">AMD Ryzen 5
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(10)</span>
+                        </label>
+                        <label class="checkbox-container">AMD Ryzen 7
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(12)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-subtitle">RAM</h4>
+                    <div class="ram-options">
+                        <label class="checkbox-container">8GB
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(12)</span>
+                        </label>
+                        <label class="checkbox-container">16GB
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(25)</span>
+                        </label>
+                        <label class="checkbox-container">32GB
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="product-count">(8)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-subtitle">Tình trạng kho</h4>
+                    <div class="inventory-options">
+                        <label class="radio-container">Tất cả
+                            <input type="radio" name="inventory" checked="checked">
+                            <span class="radiomark"></span>
+                        </label>
+                        <label class="radio-container">Còn hàng
+                            <input type="radio" name="inventory">
+                            <span class="radiomark"></span>
+                            <span class="product-count">(30)</span>
+                        </label>
+                        <label class="radio-container">Sắp về hàng
+                            <input type="radio" name="inventory">
+                            <span class="radiomark"></span>
+                            <span class="product-count">(6)</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="products-section">
+                <div class="products-header">
+                    <div class="sort-options">
+                        <label>Sắp xếp theo:</label>
+                        <select class="sort-select">
+                            <option value="popular">Phổ biến nhất</option>
+                            <option value="newest">Mới nhất</option>
+                            <option value="price-asc">Giá thấp đến cao</option>
+                            <option value="price-desc">Giá cao đến thấp</option>
+                            <option value="rating">Đánh giá cao nhất</option>
+                        </select>
+                    </div>
+                    <div class="view-options">
+                        <span class="view-option active"><i class="fas fa-th"></i></span>
+                        <span class="view-option"><i class="fas fa-list"></i></span>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card" th:each="product : ${productCards}">
+                        <div class="product-image">
+                            <a th:href="@{/products/{id}(id=${product.id})}">
+                                <img th:src="${product.thumbnail}" th:alt="${product.title}">
+                            </a>
+                            <div th:if="${product.discount > 0}" class="product-badge" th:text="${'-' + product.discount + '%'}"></div>
+                            <div class="inventory-status" th:classappend="${product.inStock ? 'in-stock' : 'out-of-stock'}" th:text="${product.inventoryStatus}"></div>
+                        </div>
+                        <div class="product-info">
+                            <a th:href="@{/products/{id}(id=${product.id})}"><h3 class="product-name" th:text="${product.title}"></h3></a>
+                            <div class="product-specs">
+                                <span th:if="${product.cpu != null}"><i class="fas fa-microchip"></i> <span th:text="${product.cpu}"></span></span>
+                                <span th:if="${product.ram != null}"><i class="fas fa-memory"></i> <span th:text="${product.ram}"></span></span>
+                                <span th:if="${product.storage != null}"><i class="fas fa-hard-drive"></i> <span th:text="${product.storage}"></span></span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price" th:text="${#numbers.formatCurrency(product.currentPrice)}"></span>
+                                <span th:if="${product.discount > 0}" class="old-price" th:text="${#numbers.formatCurrency(product.oldPrice)}"></span>
+                            </div>
+                            <div class="product-rating">
+                                <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                                    <i th:class="${product.averageRating >= i ? 'fas fa-star' : (product.averageRating >= i - 0.5 ? 'fas fa-star-half-alt' : 'far fa-star')}"></i>
+                                </th:block>
+                                <span th:text="${'(' + product.reviewCount + ')'}"></span>
+                            </div>
+                            <button class="add-to-cart" th:disabled="${!product.inStock}" th:text="${product.inStock ? 'Thêm vào giỏ' : 'Hết hàng'}"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-nav disabled"><i class="fas fa-angle-left"></i></a>
+                    <a href="#" class="page-number active">1</a>
+                    <a href="#" class="page-number">2</a>
+                    <a href="#" class="page-number">3</a>
+                    <a href="#" class="page-number">4</a>
+                    <a href="#" class="page-number">5</a>
+                    <a href="#" class="page-nav"><i class="fas fa-angle-right"></i></a>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+<div id="footer"></div>
+
+<script th:src="@{/script.js}"></script>
+<script th:src="@{/category.js}"></script>
+<script>
+    // Giữ nguyên phần fetch header/footer nếu chúng là file HTML tĩnh
+    fetch("/header.html") // Đảm bảo đường dẫn này đúng với vị trí file header của bạn
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute("href").split("?")[0];
+                if (linkPath === currentPath) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+    fetch("/footer.html") // Đảm bảo đường dẫn này đúng với vị trí file footer của bạn
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        });
+</script>
+</body>
+</html>

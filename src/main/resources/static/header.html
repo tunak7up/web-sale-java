@@ -1,0 +1,57 @@
+<!--<header>-->
+<!--    <div class="container">-->
+<!--      <div class="navbar">-->
+<!--        <div class="logo">-->
+<!--          <a href="index.html"><i class="fas fa-laptop-code"></i> Tech<span>Zone</span></a>-->
+<!--        </div>-->
+<!--        <nav class="nav-links">-->
+<!--          <a href="index.html">Trang chủ</a>-->
+<!--          <a href="category.html">Danh sách sản phẩm</a>-->
+<!--          <a href="/inventory">Admin</a>-->
+<!--    -->
+<!--          &lt;!&ndash; category.html?cat=mouse &ndash;&gt;-->
+<!--        </nav>-->
+<!--        <div class="nav-icons">-->
+<!--          <a href="login.html" title="Đăng nhập"><i class="fas fa-user"></i></a>-->
+<!--          <a href="account.html" title="Thông tin khách hàng"><i class="fa-solid fa-id-card"></i></a>-->
+<!--          <a href="cart.html" title="Giỏ hàng" class="cart-icon active">-->
+<!--            <i class="fas fa-shopping-cart"></i>-->
+<!--            <span class="cart-count">3</span>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </header>-->
+
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a th:href="@{/}"><i class="fas fa-laptop-code"></i> Tech<span>Zone</span></a>
+      </div>
+      <nav class="nav-links">
+        <a href="/">Trang chủ</a>
+
+        <div class="dropdown">
+          <a class="dropbtn">Danh sách sản phẩm</a>
+
+          <div class="dropdown-content">
+            <a href="/categories/1">Laptop</a>
+            <a href="/categories/2">PC</a>
+            <a href="/categories/3">Màn hình</a>
+            <a href="/categories/4">Linh kiện</a> </div>
+        </div>
+        <a href="/inventory">Admin</a>
+
+      </nav>
+      <div class="nav-icons">
+        <a href="login.html" title="Đăng nhập"><i class="fas fa-user"></i></a>
+        <a href="account.html" title="Thông tin khách hàng"><i class="fa-solid fa-id-card"></i></a>
+        <a href="cart.html" title="Giỏ hàng" class="cart-icon active">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

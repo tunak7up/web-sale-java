@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng | TechZone</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Breadcrumb -->
+  <!-- <section class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><i class="fas fa-angle-right"></i></li>
+        <li>Giỏ hàng</li>
+      </ul>
+    </div>
+  </section> -->
+
+  <section class="checkout-progress">
+    <div class="container">
+      <div class="progress-steps">
+        <div class="step active">
+          <div class="step-number">1</div>
+          <div class="step-title">Giỏ hàng</div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-title">Thông tin giao hàng</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Thanh toán</div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Hoàn tất</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Content -->
+  <main class="cart-page">
+    <div class="container">
+      <h1 class="page-title">Giỏ hàng của bạn</h1>
+      
+      <div class="cart-container">
+        <!-- Cart Items -->
+        <div class="cart-items">
+          <!-- Cart Header -->
+          <div class="cart-header">
+            <div class="header-product">Sản phẩm</div>
+            <div class="header-price">Đơn giá</div>
+            <div class="header-quantity">Số lượng</div>
+            <div class="header-total">Số tiền</div>
+            <div class="header-action">Thao tác</div>
+          </div>
+          
+          <!-- Cart Item 1 -->
+          <div class="cart-item">
+            <div class="item-product">
+              <div class="product-image">
+                <img src="https://anphat.com.vn/media/lib/15-11-2024/laptop-asus-rog-strix-g18-g814jir-n6108w.jpg" alt="Asus ROG">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Laptop Asus ROG Strix G15</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> i7-12700H</span>
+                  <span><i class="fas fa-memory"></i> 16GB</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-price">
+              <div class="current-price">32.990.000đ</div>
+              <div class="old-price">38.990.000đ</div>
+            </div>
+            <div class="item-quantity">
+              <div class="quantity-selector">
+                <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                <input type="number" value="1" min="1" max="10">
+                <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            <div class="item-total">32.990.000đ</div>
+            <div class="item-action">
+              <button class="remove-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+          
+          <!-- Cart Item 2 -->
+          <div class="cart-item">
+            <div class="item-product">
+              <div class="product-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz-tkLn1VM-Oyz4PjAtwqs0tovgc6AZVXbVw&s" alt="Razer Keyboard">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Bàn phím Razer BlackWidow V3</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-keyboard"></i> Cơ Switch Green</span>
+                  <span><i class="fas fa-rgb"></i> RGB Chroma</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-price">
+              <div class="current-price">3.490.000đ</div>
+            </div>
+            <div class="item-quantity">
+              <div class="quantity-selector">
+                <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                <input type="number" value="2" min="1" max="10">
+                <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            <div class="item-total">6.980.000đ</div>
+            <div class="item-action">
+              <button class="remove-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+          
+          <!-- Cart Item 3 -->
+          <div class="cart-item">
+            <div class="item-product">
+              <div class="product-image">
+                <img src="https://product.hstatic.net/200000637319/product/logitech-g102-lightsync-rgb-wired-gaming-mouse-black-903150-_41483e8daff448edbb83afc2524b811f_master.jpg" alt="Logitech Mouse">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Chuột Logitech G502 Hero</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-tachometer-alt"></i> 25.600 DPI</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-price">
+              <div class="current-price">1.290.000đ</div>
+            </div>
+            <div class="item-quantity">
+              <div class="quantity-selector">
+                <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                <input type="number" value="1" min="1" max="10">
+                <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            <div class="item-total">1.290.000đ</div>
+            <div class="item-action">
+              <button class="remove-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+          
+          <!-- Cart Actions -->
+          <div class="cart-actions">
+            <a href="category.html" class="continue-shopping">
+              <i class="fas fa-arrow-left"></i> Tiếp tục mua hàng
+            </a>
+            <button class="update-cart">Cập nhật giỏ hàng</button>
+          </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+          <div class="summary-box">
+            <h3 class="summary-title">Tóm tắt đơn hàng</h3>
+            
+            <div class="summary-row">
+              <span>Tạm tính</span>
+              <span>41.260.000đ</span>
+            </div>
+            
+            <div class="summary-row">
+              <span>Giảm giá</span>
+              <span class="discount">-6.000.000đ</span>
+            </div>
+            
+            <div class="summary-row">
+              <span>Phí vận chuyển</span>
+              <span class="shipping">Miễn phí</span>
+            </div>
+            
+            <div class="summary-divider"></div>
+            
+            <div class="summary-row total">
+              <span>Tổng cộng</span>
+              <span class="total-price">35.260.000đ</span>
+            </div>
+            
+            <div class="coupon-form">
+              <input type="text" placeholder="Nhập mã giảm giá">
+              <button class="apply-coupon">Áp dụng</button>
+            </div>
+            
+            <a href="checkout.html" class="checkout-btn">Tiến hành thanh toán</a>
+            
+            <div class="secure-checkout">
+              <i class="fas fa-lock"></i>
+              <span>Thanh toán an toàn</span>
+            </div>
+          </div>
+          
+          <div class="shipping-info">
+            <h4><i class="fas fa-truck"></i> Miễn phí vận chuyển</h4>
+            <p>Cho đơn hàng từ 5.000.000đ trong phạm vi TP.HCM và Hà Nội</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Recently Viewed -->
+      <section class="recently-viewed">
+        <h2 class="section-title">Sản phẩm vừa xem</h2>
+        <div class="product-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://nguyencongpc.vn/media/lib/29-10-2022/laptopmsigamingkatanagf6612uck-804vn2.jpeg" alt="MSI Katana">
+              <div class="product-badge">Mới</div>
+              <div class="inventory-status in-stock">Còn hàng</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Laptop MSI Katana GF66</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-microchip"></i> i5-12450H</span>
+                <span><i class="fas fa-memory"></i> 8GB</span>
+              </div>
+              <div class="product-price">
+                <span class="current-price">21.990.000đ</span>
+              </div>
+              <button class="add-to-cart">Thêm vào giỏ</button>
+            </div>
+          </div>
+          
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://drive.gianhangvn.com/image/laptop-acer-nitro-gaming-an515-45-r6ev-r5-1-2331800j20085.jpg" alt="Acer Nitro">
+              <div class="inventory-status low-stock">Sắp hết hàng</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Laptop Acer Nitro 5</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-microchip"></i> i5-12500H</span>
+                <span><i class="fas fa-memory"></i> 8GB</span>
+              </div>
+              <div class="product-price">
+                <span class="current-price">19.990.000đ</span>
+              </div>
+              <button class="add-to-cart">Thêm vào giỏ</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>

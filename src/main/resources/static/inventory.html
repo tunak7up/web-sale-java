@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Kho | TechZone</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Header -->
+<div id="header"></div>
+
+<!-- Main Content -->
+<main class="inventory-page">
+  <div class="container">
+    <div class="page-header">
+      <h1><i class="fas fa-boxes"></i> Quản Lý Kho Hàng</h1>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm sản phẩm...">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="filter-dropdown">
+          <select id="category-filter">
+            <option value="all">Tất cả danh mục</option>
+            <option value="laptop">Laptop</option>
+            <option value="pc">PC Gaming</option>
+            <option value="keyboard">Bàn phím</option>
+            <option value="mouse">Chuột</option>
+          </select>
+        </div>
+        <div class="store-filter">
+          <select id="store-filter">
+            <option value="all">Tất cả cơ sở</option>
+            <option value="hanoi">Hà Nội</option>
+            <option value="hcm">TP.HCM</option>
+            <option value="danang">Đà Nẵng</option>
+          </select>
+        </div>
+        <button class="btn-export">
+          <i class="fas fa-file-export"></i> Xuất báo cáo
+        </button>
+      </div>
+    </div>
+
+    <!-- Inventory Summary -->
+    <!-- ... (giữ nguyên phần summary) ... -->
+    <div class="inventory-summary">
+
+      <div class="summary-card">
+        <div class="summary-icon">
+          <i class="fas fa-box-open"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">1,245</div>
+          <div class="summary-label">Tổng sản phẩm</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">3</div>
+          <div class="summary-label">Cơ sở</div>
+        </div>
+      </div>
+      <div class="summary-card warning">
+        <div class="summary-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">24</div>
+          <div class="summary-label">Sắp hết hàng</div>
+        </div>
+      </div>
+      <div class="summary-card danger">
+        <div class="summary-icon">
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="summary-content">
+          <div class="summary-value">8</div>
+          <div class="summary-label">Hết hàng</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="inventory-table-container">
+      <table class="inventory-table">
+        <thead>
+        <tr>
+          <th>Mã SP</th>
+          <th>Sản phẩm</th>
+          <th>Kho hàng</th> <!-- Cột mới gộp các kho -->
+          <th>Tổng cộng</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Product 1 -->
+        <tr>
+          <td>AS12345</td>
+          <td>
+            <div class="product-info">
+              <div class="product-name">Laptop Asus ROG Strix G15</div>
+              <div class="product-category">Laptop Gaming</div>
+            </div>
+          </td>
+          <td>
+            <div class="store-inventory">
+              <div class="store-summary" data-expanded="false">
+                <span class="store-count">3 kho</span>
+                <button class="btn-toggle">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="store-list">
+                <div class="store-item">
+                  <span class="store-name">Hà Nội</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">15</span>
+                    <button class="btn-adjust" data-store="hanoi" data-product="AS12345">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">TP.HCM</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">22</span>
+                    <button class="btn-adjust" data-store="hcm" data-product="AS12345">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">Đà Nẵng</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">8</span>
+                    <button class="btn-adjust" data-store="danang" data-product="AS12345">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>45</td>
+          <td><span class="status-badge in-stock">Còn hàng</span></td>
+          <td>
+            <button class="btn-transfer">
+              <i class="fas fa-exchange-alt"></i> Điều chuyển
+            </button>
+          </td>
+        </tr>
+
+        <!-- Product 2 -->
+        <tr>
+          <td>MS67890</td>
+          <td>
+            <div class="product-info">
+              <div class="product-name">Laptop MSI Katana GF66</div>
+              <div class="product-category">Laptop Gaming</div>
+            </div>
+          </td>
+          <td>
+            <div class="store-inventory">
+              <div class="store-summary" data-expanded="false">
+                <span class="store-count">3 kho</span>
+                <button class="btn-toggle">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="store-list">
+                <div class="store-item">
+                  <span class="store-name">Hà Nội</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">5</span>
+                    <button class="btn-adjust" data-store="hanoi" data-product="MS67890">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">TP.HCM</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">3</span>
+                    <button class="btn-adjust" data-store="hcm" data-product="MS67890">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">Đà Nẵng</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">0</span>
+                    <button class="btn-adjust" data-store="danang" data-product="MS67890">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>8</td>
+          <td><span class="status-badge low-stock">Sắp hết hàng</span></td>
+          <td>
+            <button class="btn-transfer">
+              <i class="fas fa-exchange-alt"></i> Điều chuyển
+            </button>
+          </td>
+        </tr>
+
+        <!-- Product 3 -->
+        <tr>
+          <td>AC54321</td>
+          <td>
+            <div class="product-info">
+              <div class="product-name">Laptop Acer Nitro 5</div>
+              <div class="product-category">Laptop Gaming</div>
+            </div>
+          </td>
+          <td>
+            <div class="store-inventory">
+              <div class="store-summary" data-expanded="false">
+                <span class="store-count">3 kho</span>
+                <button class="btn-toggle">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="store-list">
+                <div class="store-item">
+                  <span class="store-name">Hà Nội</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">0</span>
+                    <button class="btn-adjust" data-store="hanoi" data-product="AC54321">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">TP.HCM</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">0</span>
+                    <button class="btn-adjust" data-store="hcm" data-product="AC54321">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">Đà Nẵng</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">0</span>
+                    <button class="btn-adjust" data-store="danang" data-product="AC54321">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>0</td>
+          <td><span class="status-badge out-of-stock">Hết hàng</span></td>
+          <td>
+            <button class="btn-order">
+              <i class="fas fa-truck"></i> Đặt hàng
+            </button>
+          </td>
+        </tr>
+
+        <!-- Product 4 -->
+        <tr>
+          <td>RA98765</td>
+          <td>
+            <div class="product-info">
+              <div class="product-name">Bàn phím Razer BlackWidow</div>
+              <div class="product-category">Bàn phím cơ</div>
+            </div>
+          </td>
+          <td>
+            <div class="store-inventory">
+              <div class="store-summary" data-expanded="false">
+                <span class="store-count">3 kho</span>
+                <button class="btn-toggle">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="store-list">
+                <div class="store-item">
+                  <span class="store-name">Hà Nội</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">12</span>
+                    <button class="btn-adjust" data-store="hanoi" data-product="RA98765">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">TP.HCM</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">18</span>
+                    <button class="btn-adjust" data-store="hcm" data-product="RA98765">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="store-item">
+                  <span class="store-name">Đà Nẵng</span>
+                  <div class="stock-quantity">
+                    <span class="quantity">5</span>
+                    <button class="btn-adjust" data-store="danang" data-product="RA98765">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>35</td>
+          <td><span class="status-badge in-stock">Còn hàng</span></td>
+          <td>
+            <button class="btn-transfer">
+              <i class="fas fa-exchange-alt"></i> Điều chuyển
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <!-- ... (giữ nguyên phần pagination) ... -->
+    <div class="pagination">
+      <button class="page-nav" disabled><i class="fas fa-angle-left"></i></button>
+      <button class="page-number active">1</button>
+      <button class="page-number">2</button>
+      <button class="page-number">3</button>
+      <button class="page-number">4</button>
+      <button class="page-nav"><i class="fas fa-angle-right"></i></button>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<script>
+  // JavaScript cho chức năng hiển thị/ẩn danh sách kho hàng
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.btn-toggle');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const storeSummary = this.closest('.store-summary');
+        const storeList = storeSummary.nextElementSibling;
+        const isExpanded = storeSummary.getAttribute('data-expanded') === 'true';
+
+        if (isExpanded) {
+          storeList.style.display = 'none';
+          this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+          storeSummary.setAttribute('data-expanded', 'false');
+        } else {
+          storeList.style.display = 'block';
+          this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+          storeSummary.setAttribute('data-expanded', 'true');
+        }
+      });
+    });
+
+    // Đóng tất cả danh sách khi click ra ngoài
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.store-inventory')) {
+        document.querySelectorAll('.store-list').forEach(list => {
+          list.style.display = 'none';
+        });
+        document.querySelectorAll('.store-summary').forEach(summary => {
+          summary.setAttribute('data-expanded', 'false');
+          summary.querySelector('.btn-toggle').innerHTML = '<i class="fas fa-chevron-down"></i>';
+        });
+      }
+    });
+  });
+
+  // ... (giữ nguyên phần fetch header và footer) ...
+
+  fetch("admin-header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+              const linkPath = link.getAttribute("href").split("?")[0];
+              if (linkPath === currentPath) {
+                link.classList.add("active");
+              }
+            });
+          });
+
+  fetch("footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+
+</script>
+</body>
+</html>

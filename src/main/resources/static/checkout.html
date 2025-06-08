@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh toán - TechZone</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Checkout Progress -->
+  <section class="checkout-progress">
+    <div class="container">
+      <div class="progress-steps">
+        <div class="step active">
+          <div class="step-number">1</div>
+          <div class="step-title">Giỏ hàng</div>
+        </div>
+        <div class="step active">
+          <div class="step-number">2</div>
+          <div class="step-title">Thông tin giao hàng</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Thanh toán</div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Hoàn tất</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Checkout Content -->
+  <section class="checkout-page">
+    <div class="container">
+      <h1 class="page-title">Thông tin thanh toán</h1>
+
+      <div class="checkout-container">
+        <!-- Checkout Form -->
+        <div class="checkout-form">
+          <form id="checkoutForm">
+            <!-- Shipping Information -->
+            <div class="form-section">
+              <h2 class="section-title">
+                <i class="fas fa-truck"></i> Thông tin giao hàng
+              </h2>
+
+              <div class="form-group">
+                <label for="fullName">Họ và tên <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Số điện thoại <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Địa chỉ <span class="required">*</span></label>
+                <input type="text" id="address" name="address" placeholder="Số nhà, tên đường" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">Tỉnh/Thành phố <span class="required">*</span></label>
+                  <select id="city" name="city" required>
+                    <option value="">Chọn Tỉnh/TP</option>
+                    <option value="hcm">TP. Hồ Chí Minh</option>
+                    <option value="hn">Hà Nội</option>
+                    <option value="dn">Đà Nẵng</option>
+                    <!-- More options would be here -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="district">Quận/Huyện <span class="required">*</span></label>
+                  <select id="district" name="district" required>
+                    <option value="">Chọn Quận/Huyện</option>
+                    <option value="q1">Quận 1</option>
+                    <option value="q2">Quận 2</option>
+                    <!-- More options would be here -->
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="note">Ghi chú đơn hàng</label>
+                <textarea id="note" name="note" rows="3"
+                  placeholder="Ghi chú về đơn hàng, địa chỉ giao hàng..."></textarea>
+              </div>
+            </div>
+
+            <!-- Shipping Method -->
+            <div class="form-section">
+              <h2 class="section-title">
+                <i class="fas fa-shipping-fast"></i> Phương thức vận chuyển
+              </h2>
+
+              <div class="shipping-methods">
+                <div class="shipping-method">
+                  <input type="radio" id="standardShipping" name="shippingMethod" value="standard" checked>
+                  <label for="standardShipping">
+                    <div class="method-info">
+                      <div class="method-name">Giao hàng tiêu chuẩn</div>
+                      <div class="method-details">3-5 ngày làm việc</div>
+                    </div>
+                    <div class="method-price">30.000đ</div>
+                  </label>
+                </div>
+
+                <div class="shipping-method">
+                  <input type="radio" id="expressShipping" name="shippingMethod" value="express">
+                  <label for="expressShipping">
+                    <div class="method-info">
+                      <div class="method-name">Giao hàng nhanh</div>
+                      <div class="method-details">1-2 ngày làm việc</div>
+                    </div>
+                    <div class="method-price">50.000đ</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="form-section">
+              <h2 class="section-title">
+                <i class="fas fa-credit-card"></i> Phương thức thanh toán
+              </h2>
+
+              <div class="payment-methods">
+                <div class="payment-method">
+                  <input type="radio" id="codPayment" name="paymentMethod" value="cod" checked>
+                  <label for="codPayment">
+                    <div class="method-icon">
+                      <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="method-info">
+                      <div class="method-name">Thanh toán khi nhận hàng (COD)</div>
+                      <div class="method-details">Thanh toán bằng tiền mặt khi nhận hàng</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="payment-method">
+                  <input type="radio" id="bankTransfer" name="paymentMethod" value="bank">
+                  <label for="bankTransfer">
+                    <div class="method-icon">
+                      <i class="fas fa-university"></i>
+                    </div>
+                    <div class="method-info">
+                      <div class="method-name">Chuyển khoản ngân hàng</div>
+                      <div class="method-details">Chuyển khoản qua tài khoản ngân hàng</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="payment-method">
+                  <input type="radio" id="momoPayment" name="paymentMethod" value="momo">
+                  <label for="momoPayment">
+                    <div class="method-icon">
+                      <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="method-info">
+                      <div class="method-name">Ví điện tử MoMo</div>
+                      <div class="method-details">Thanh toán qua ứng dụng MoMo</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <div class="summary-box">
+            <h3 class="summary-title">Đơn hàng của bạn</h3>
+
+            <div class="order-items">
+              <div class="order-item">
+                <div class="item-info">
+                  <div class="item-name">Laptop Asus ROG Strix G15</div>
+                  <div class="item-quantity">x1</div>
+                </div>
+                <div class="item-price">32.990.000đ</div>
+              </div>
+
+              <div class="order-item">
+                <div class="item-info">
+                  <div class="item-name">Chuột Logitech G502 Hero</div>
+                  <div class="item-quantity">x2</div>
+                </div>
+                <div class="item-price">2.580.000đ</div>
+              </div>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-row">
+              <span>Tạm tính</span>
+              <span>35.570.000đ</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Phí vận chuyển</span>
+              <span class="shipping">30.000đ</span>
+            </div>
+
+            <div class="coupon-form">
+              <input type="text" placeholder="Mã giảm giá">
+              <button type="button" class="apply-coupon">Áp dụng</button>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-row total">
+              <span>Tổng cộng</span>
+              <span class="total-price">35.600.000đ</span>
+            </div>
+
+       
+              <!-- <button type="submit" onclick="window.location.href='order-confirmation.html'" form="checkoutForm" class="checkout-btn">
+                Đặt hàng                
+              </button> -->
+            <a href="payment.html" class="checkout-btn">Đặt hàng</a>
+              <!-- onclick="window.location.href='order-confirmation.html'" -->
+
+            <div class="secure-checkout">
+              <i class="fas fa-lock"></i>
+              <span>Thanh toán an toàn</span>
+            </div>
+          </div>
+
+          <div class="shipping-info">
+            <h4>
+              <i class="fas fa-shield-alt"></i>
+              Chính sách bảo mật
+            </h4>
+            <p>Thông tin của bạn sẽ được bảo mật và chỉ sử dụng cho mục đích giao hàng.</p>
+          </div>
+        </div>
+      </div>
+      <a href="cart.html" class="back-link">← Quay lại Giỏ hàng</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+
+</html>

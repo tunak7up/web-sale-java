@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tạo Sản Phẩm Mới | TechZone</title>
+  <link rel="stylesheet" th:href="@{/styles.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<div id="header"></div>
+
+<main class="add-product-page">
+  <div class="container">
+    <div class="page-header">
+      <h1><i class="fas fa-plus-circle"></i> Tạo Sản Phẩm Mới</h1>
+      <div class="breadcrumb">
+        <a href="/inventory">Quản lý kho</a> <i class="fas fa-angle-right"></i>
+        <span>Tạo sản phẩm</span>
+      </div>
+    </div>
+
+    <div th:if="${successMessage}" class="alert alert-success">
+      <span th:text="${successMessage}"></span>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+      <span th:text="${errorMessage}"></span>
+    </div>
+
+    <form class="product-form" th:action="@{/products/add}" th:object="${productForm}" method="post">
+      <div class="form-section">
+        <h2 class="section-title">Thông tin cơ bản</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="product-name">Tên sản phẩm <span class="required">*</span></label>
+            <input type="text" id="product-name" th:field="*{title}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Danh mục <span class="required">*</span></label>
+            <select id="category" th:field="*{categoryId}" required>
+              <option value="">Chọn danh mục</option>
+              <option th:each="category : ${categories}"
+                      th:value="${category.id}"
+                      th:text="${category.name}"></option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Giá <span class="required">*</span></label>
+            <input type="number" id="price" th:field="*{price}" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="discount">Giảm giá (%)</label>
+            <input type="number" id="discount" th:field="*{discount}" min="0" max="100">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="thumbnail">Ảnh sản phẩm (URL)</label>
+            <input type="text" id="thumbnail" th:field="*{thumbnail}" placeholder="http://example.com/image.jpg">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="description">Mô tả sản phẩm</label>
+            <textarea id="description" th:field="*{description}" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="section-title">Thông tin tồn kho ban đầu</h2>
+        <div class="inventory-grid">
+          <div class="inventory-item" th:each="store, stat : ${stores}">
+            <label th:text="${'Cơ sở ' + store.name}"></label>
+            <input type="number" min="0" value="0"
+                   th:name="${'initialInventories[' + stat.index + '].quantity'}"
+                   th:id="${'quantity-store-' + store.id}"
+                   placeholder="Số lượng">
+            <input type="hidden" th:name="${'initialInventories[' + stat.index + '].storeId'}" th:value="${store.id}">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" onclick="window.history.back();">Hủy bỏ</button>
+        <button type="submit" class="btn-submit">Lưu sản phẩm</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<div id="footer"></div>
+
+<script th:src="@{/script.js}"></script></script>
+<script>
+  // Sửa từ "admin-header.html" thành "/admin-header.html"
+  fetch("/admin-header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+              const linkPath = link.getAttribute("href").split("?")[0];
+              if (linkPath === currentPath) {
+                link.classList.add("active");
+              }
+            });
+          });
+
+  // Sửa từ "footer.html" thành "/footer.html"
+  fetch("/footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+</script>
+</body>
+</html>

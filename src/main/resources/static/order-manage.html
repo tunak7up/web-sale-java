@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Đơn Hàng | TechZone</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="order-management">
+    <div class="container">
+      <div class="page-header">
+        <h1><i class="fas fa-clipboard-list"></i> Quản Lý Đơn Hàng</h1>
+        <div class="header-actions">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm đơn hàng...">
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="filter-dropdown">
+            <select>
+              <option value="all">Tất cả trạng thái</option>
+              <option value="pending">Chờ xử lý</option>
+              <option value="processing">Đang xử lý</option>
+              <option value="shipped">Đã giao hàng</option>
+              <option value="completed">Hoàn thành</option>
+              <option value="cancelled">Đã hủy</option>
+            </select>
+          </div>
+          <div class="date-filter">
+            <input type="date" id="start-date">
+            <span>đến</span>
+            <input type="date" id="end-date">
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Statistics -->
+      <div class="order-stats">
+        <div class="stat-card">
+          <div class="stat-value">24</div>
+          <div class="stat-label">Chờ xử lý</div>
+          <div class="stat-icon pending"><i class="fas fa-clock"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">18</div>
+          <div class="stat-label">Đang xử lý</div>
+          <div class="stat-icon processing"><i class="fas fa-tasks"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">42</div>
+          <div class="stat-label">Đang giao</div>
+          <div class="stat-icon shipped"><i class="fas fa-truck"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">156</div>
+          <div class="stat-label">Hoàn thành</div>
+          <div class="stat-icon completed"><i class="fas fa-check-circle"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Đã hủy</div>
+          <div class="stat-icon cancelled"><i class="fas fa-times-circle"></i></div>
+        </div>
+      </div>
+
+      <!-- Orders Table -->
+      <div class="orders-table-container">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Mã đơn hàng</th>
+              <th>Khách hàng</th>
+              <th>Ngày đặt</th>
+              <th>Tổng tiền</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Order 1 -->
+            <tr>
+              <td>#DH20230001</td>
+              <td>
+                <div class="customer-info">
+                  <div class="customer-name">Nguyễn Văn A</div>
+                  <div class="customer-phone"><i class="fas fa-phone"></i> 0912345678</div>
+                </div>
+              </td>
+              <td>15/10/2023</td>
+              <td>12.490.000đ</td>
+              <td><span class="status-badge pending">Chờ xử lý</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-view"><i class="fas fa-eye"></i></button>
+                  <button class="btn-process"><i class="fas fa-edit"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Order 2 -->
+            <tr>
+              <td>#DH20230002</td>
+              <td>
+                <div class="customer-info">
+                  <div class="customer-name">Trần Thị B</div>
+                  <div class="customer-phone"><i class="fas fa-phone"></i> 0987654321</div>
+                </div>
+              </td>
+              <td>14/10/2023</td>
+              <td>8.750.000đ</td>
+              <td><span class="status-badge processing">Đang xử lý</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-view"><i class="fas fa-eye"></i></button>
+                  <button class="btn-process"><i class="fas fa-edit"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Order 3 -->
+            <tr>
+              <td>#DH20230003</td>
+              <td>
+                <div class="customer-info">
+                  <div class="customer-name">Lê Văn C</div>
+                  <div class="customer-phone"><i class="fas fa-phone"></i> 0905123456</div>
+                </div>
+              </td>
+              <td>13/10/2023</td>
+              <td>25.990.000đ</td>
+              <td><span class="status-badge shipped">Đang giao</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-view"><i class="fas fa-eye"></i></button>
+                  <button class="btn-process"><i class="fas fa-edit"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Order 4 -->
+            <tr>
+              <td>#DH20230004</td>
+              <td>
+                <div class="customer-info">
+                  <div class="customer-name">Phạm Thị D</div>
+                  <div class="customer-phone"><i class="fas fa-phone"></i> 0978123456</div>
+                </div>
+              </td>
+              <td>12/10/2023</td>
+              <td>15.340.000đ</td>
+              <td><span class="status-badge completed">Hoàn thành</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-view"><i class="fas fa-eye"></i></button>
+                  <button class="btn-process" disabled><i class="fas fa-edit"></i></button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Order 5 -->
+            <tr>
+              <td>#DH20230005</td>
+              <td>
+                <div class="customer-info">
+                  <div class="customer-name">Hoàng Văn E</div>
+                  <div class="customer-phone"><i class="fas fa-phone"></i> 0918765432</div>
+                </div>
+              </td>
+              <td>10/10/2023</td>
+              <td>6.890.000đ</td>
+              <td><span class="status-badge cancelled">Đã hủy</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-view"><i class="fas fa-eye"></i></button>
+                  <button class="btn-process" disabled><i class="fas fa-edit"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="page-nav" disabled><i class="fas fa-angle-left"></i></button>
+        <button class="page-number active">1</button>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+        <button class="page-number">4</button>
+        <button class="page-number">5</button>
+        <button class="page-nav"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script>
+    fetch("admin-header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+        
+        const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute("href").split("?")[0];
+          if (linkPath === currentPath) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+</body>
+</html>

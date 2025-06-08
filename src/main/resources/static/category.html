@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh Mục Sản Phẩm | Laptop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Breadcrumb -->
+  <section class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><i class="fas fa-angle-right"></i></li>
+        <li>Laptop Gaming</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Category Content -->
+  <main class="category-page">
+    <div class="container">
+      <div class="category-header">
+        <h1>Laptop Gaming</h1>
+        <p class="product-count">Hiển thị 12/36 sản phẩm</p>
+      </div>
+
+      <div class="category-content">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+          <div class="filter-group">
+            <h3 class="filter-title">Bộ lọc</h3>
+            <button class="clear-filters">Xóa bộ lọc</button>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="filter-group">
+            <h4 class="filter-subtitle">Mức giá</h4>
+            <div class="price-range">
+              <div class="price-inputs">
+                <input type="number" placeholder="Từ" class="min-price">
+                <span>-</span>
+                <input type="number" placeholder="Đến" class="max-price">
+              </div>
+              <button class="apply-price">Áp dụng</button>
+            </div>
+            <div class="price-options">
+              <div class="price-option active">Dưới 10 triệu</div>
+              <div class="price-option">10 - 20 triệu</div>
+              <div class="price-option">20 - 30 triệu</div>
+              <div class="price-option">Trên 30 triệu</div>
+            </div>
+          </div>
+
+          <!-- Brand Filter -->
+          <div class="filter-group">
+            <h4 class="filter-subtitle">Thương hiệu</h4>
+            <div class="brand-options">
+              <label class="checkbox-container">ASUS
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+                <span class="product-count">(12)</span>
+              </label>
+              <label class="checkbox-container">MSI
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(8)</span>
+              </label>
+              <label class="checkbox-container">Acer
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(6)</span>
+              </label>
+              <label class="checkbox-container">Dell
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(5)</span>
+              </label>
+              <label class="checkbox-container">HP
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(5)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- CPU Filter -->
+          <div class="filter-group">
+            <h4 class="filter-subtitle">CPU</h4>
+            <div class="cpu-options">
+              <label class="checkbox-container">Intel Core i5
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(15)</span>
+              </label>
+              <label class="checkbox-container">Intel Core i7
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+                <span class="product-count">(20)</span>
+              </label>
+              <label class="checkbox-container">Intel Core i9
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(8)</span>
+              </label>
+              <label class="checkbox-container">AMD Ryzen 5
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(10)</span>
+              </label>
+              <label class="checkbox-container">AMD Ryzen 7
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(12)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- RAM Filter -->
+          <div class="filter-group">
+            <h4 class="filter-subtitle">RAM</h4>
+            <div class="ram-options">
+              <label class="checkbox-container">8GB
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(12)</span>
+              </label>
+              <label class="checkbox-container">16GB
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+                <span class="product-count">(25)</span>
+              </label>
+              <label class="checkbox-container">32GB
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="product-count">(8)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Inventory Status -->
+          <div class="filter-group">
+            <h4 class="filter-subtitle">Tình trạng kho</h4>
+            <div class="inventory-options">
+              <label class="radio-container">Tất cả
+                <input type="radio" name="inventory" checked="checked">
+                <span class="radiomark"></span>
+              </label>
+              <label class="radio-container">Còn hàng
+                <input type="radio" name="inventory">
+                <span class="radiomark"></span>
+                <span class="product-count">(30)</span>
+              </label>
+              <label class="radio-container">Sắp về hàng
+                <input type="radio" name="inventory">
+                <span class="radiomark"></span>
+                <span class="product-count">(6)</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Products Section -->
+        <section class="products-section">
+          <div class="products-header">
+            <div class="sort-options">
+              <label>Sắp xếp theo:</label>
+              <select class="sort-select">
+                <option value="popular">Phổ biến nhất</option>
+                <option value="newest">Mới nhất</option>
+                <option value="price-asc">Giá thấp đến cao</option>
+                <option value="price-desc">Giá cao đến thấp</option>
+                <option value="rating">Đánh giá cao nhất</option>
+              </select>
+            </div>
+            <div class="view-options">
+              <span class="view-option active"><i class="fas fa-th"></i></span>
+              <span class="view-option"><i class="fas fa-list"></i></span>
+            </div>
+          </div>
+
+          <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+              <div class="product-image">
+                <a href="product-detail.html"><img src="https://ttcenter.com.vn/uploads/product/rgpqv0v6-847-asus-rog-strix-g15-g513ih-hn015w-ryzen-7-4800h-8gb-512gb-gtx-1650-15-6-fhd-144hz-fullbox.jpg" alt="Asus ROG"></a>                
+                <div class="product-badge">-15%</div>
+                <div class="inventory-status in-stock">Còn hàng</div>
+              </div>
+              <div class="product-info">
+                <a href="product-detail.html"><h3 class="product-name">Laptop Asus ROG Strix G15</h3></a>                
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> i7-12700H</span>
+                  <span><i class="fas fa-memory"></i> 16GB</span>
+                  <span><i class="fas fa-hard-drive"></i> 512GB SSD</span>
+                </div>
+                <div class="product-price">
+                  <span class="current-price">32.990.000đ</span>
+                  <span class="old-price">38.990.000đ</span>
+                </div>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <span>(24)</span>
+                </div>
+                <button class="add-to-cart">Thêm vào giỏ</button>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="https://cdn.tgdd.vn/Files/2021/06/19/1361488/msi-katana-gf66-thong-so_1280x783-800-resize.png" alt="MSI Katana">
+                <div class="product-badge">Mới</div>
+                <div class="inventory-status in-stock">Còn hàng</div>
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Laptop MSI Katana GF66</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> i5-12450H</span>
+                  <span><i class="fas fa-memory"></i> 8GB</span>
+                  <span><i class="fas fa-hard-drive"></i> 512GB SSD</span>
+                </div>
+                <div class="product-price">
+                  <span class="current-price">21.990.000đ</span>
+                </div>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <span>(18)</span>
+                </div>
+                <button class="add-to-cart">Thêm vào giỏ</button>
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="https://nhatminhlaptop.com/upload/products/an515551-2024-09-08-10-36-03.jpg" alt="Acer Nitro">
+                <div class="inventory-status low-stock">Sắp hết hàng</div>
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Laptop Acer Nitro 5</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> i5-12500H</span>
+                  <span><i class="fas fa-memory"></i> 8GB</span>
+                  <span><i class="fas fa-hard-drive"></i> 512GB SSD</span>
+                </div>
+                <div class="product-price">
+                  <span class="current-price">19.990.000đ</span>
+                </div>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                  <span>(15)</span>
+                </div>
+                <button class="add-to-cart">Thêm vào giỏ</button>
+              </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="https://phucanhcdn.com/media/product/56144_laptop_dell_gaming_g15_5530_71045030_8.jpg" alt="Dell G15">
+                <div class="product-badge">-10%</div>
+                <div class="inventory-status in-stock">Còn hàng</div>
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Laptop Dell Gaming G15</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> i7-12650H</span>
+                  <span><i class="fas fa-memory"></i> 16GB</span>
+                  <span><i class="fas fa-hard-drive"></i> 1TB SSD</span>
+                </div>
+                <div class="product-price">
+                  <span class="current-price">28.490.000đ</span>
+                  <span class="old-price">31.990.000đ</span>
+                </div>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>(32)</span>
+                </div>
+                <button class="add-to-cart">Thêm vào giỏ</button>
+              </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="https://cdn.tgdd.vn/Products/Images/44/274921/asus-tuf-gaming-fx517zc-i5-hn077w-190322-114627-600x600.jpg" alt="Asus TUF">
+                <div class="inventory-status out-of-stock">Hết hàng</div>
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Laptop Asus TUF Dash F15</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> i7-12650H</span>
+                  <span><i class="fas fa-memory"></i> 16GB</span>
+                  <span><i class="fas fa-hard-drive"></i> 1TB SSD</span>
+                </div>
+                <div class="product-price">
+                  <span class="current-price">30.990.000đ</span>
+                </div>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <span>(21)</span>
+                </div>
+                <button class="add-to-cart" disabled>Hết hàng</button>
+              </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="https://phucanhcdn.com/media/product/55753_laptop_hp_gaming_victus_16_r0216tx_9q973pa_5.jpg" alt="HP Victus">
+                <div class="product-badge">Bán chạy</div>
+                <div class="inventory-status in-stock">Còn hàng</div>
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">Laptop HP Victus 16</h3>
+                <div class="product-specs">
+                  <span><i class="fas fa-microchip"></i> Ryzen 7 5800H</span>
+                  <span><i class="fas fa-memory"></i> 16GB</span>
+                  <span><i class="fas fa-hard-drive"></i> 512GB SSD</span>
+                </div>
+                <div class="product-price">
+                  <span class="current-price">23.990.000đ</span>
+                </div>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <span>(28)</span>
+                </div>
+                <button class="add-to-cart">Thêm vào giỏ</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <a href="#" class="page-nav disabled"><i class="fas fa-angle-left"></i></a>
+            <a href="#" class="page-number active">1</a>
+            <a href="#" class="page-number">2</a>
+            <a href="#" class="page-number">3</a>
+            <a href="#" class="page-number">4</a>
+            <a href="#" class="page-number">5</a>
+            <a href="#" class="page-nav"><i class="fas fa-angle-right"></i></a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script src="category.js"></script>
+  <script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+
+      const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute("href").split("?")[0];
+          if (linkPath === currentPath) {
+            link.classList.add("active");
+          }
+        });
+    });
+
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>

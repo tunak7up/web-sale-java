@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tài khoản của tôi - TechZone</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+  <!-- header -->
+  <div id="header"></div>
+
+
+  <div class="container" style="padding: 40px 0;">
+    <h1 class="page-title">Tài khoản của tôi</h1>
+
+    <div class="account-container" style="display: flex; flex-direction: column; gap: 40px;">
+
+      <!-- Thông tin cá nhân -->
+      <section class="account-section">
+        <h2 class="section-title">Thông tin cá nhân</h2>
+        <form class="form">
+          <div class="form-group">
+            <label for="username">Họ và tên</label>
+            <input type="text" id="username" name="username" value="Nguyễn Anh Tuấn" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="tuan.na225772@sis.hust.edu.vn" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="tel" id="phone" name="phone" value="0987962495" required />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input type="text" id="address" name="address" value="đại học bách khoa hà nội đường trần đại nghĩa việt nhật 02" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mật khẩu cũ</label>    
+            <div class="input-wrapper">
+              <input type="password" id="password" name="password" value="Daylamatkhaucu123" readonly />
+              <i class="fas fa-eye toggle-password" title="Hiện mật khẩu" onclick="togglePassword(this)"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mật khẩu mới</label>    
+            <div class="input-wrapper">
+              <input type="password" id="password" name="password" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Nhập lại mật khẩu mới</label>    
+            <div class="input-wrapper">
+              <input type="password" id="password" name="password"  required />
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Cập nhật thông tin</button>
+        </form>
+      </section>
+
+      <!-- Danh sách đơn hàng -->
+      <section class="account-section">
+        <h2 class="section-title">Đơn hàng đã mua</h2>
+        <div class="orders-table-container">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Mã đơn</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Tổng tiền</th>
+                <th>Chi tiết</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#123456</td>
+                <td>10/05/2025</td>
+                <td><span class="status-badge completed">Hoàn tất</span></td>
+                <td>15.800.000đ</td>
+                <td><a href="order-detail.html?id=123456" class="btn-view"><i class="fas fa-eye" title="Xem chi tiết đơn hàng"></i></a></td>
+              </tr>
+              <tr>
+                <td>#123457</td>
+                <td>05/05/2025</td>
+                <td><span class="status-badge processing">Đang xử lý</span></td>
+                <td>8.500.000đ</td>
+                <td><a href="order-detail.html?id=123457" class="btn-view"><i class="fas fa-eye" title="Xem chi tiết đơn hàng"></i></a></td>
+              </tr>
+              <!-- Thêm dòng khác nếu cần -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- footer -->
+  <div id="footer"></div>
+
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      });
+
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <script>
+  function togglePassword(icon) {
+    const input = icon.previousElementSibling;
+    const isHidden = input.type === "password";
+    input.type = isHidden ? "text" : "password";
+    icon.classList.toggle("fa-eye");
+    icon.classList.toggle("fa-eye-slash");
+  }
+</script>
+
+</body>
+
+</html>

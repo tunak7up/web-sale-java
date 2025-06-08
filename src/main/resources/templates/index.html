@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone - Thiết bị điện tử</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div id="header"></div>
+
+<section class="slider">
+    <div class="slides">
+        <div class="slide active">
+            <img src="https://i.pinimg.com/736x/68/2f/3e/682f3ebdbb461ed6c5a01aec59a1b39b.jpg" alt="Laptop Giảm Giá">
+            <div class="slide-content">
+                <h2>Laptop Gaming Giảm 30%</h2>
+                <p>Độc quyền tại TechZone</p>
+                <a th:href="@{/categories/1}" class="btn">Mua ngay</a> </div>
+        </div>
+        <div class="slide">
+            <img src="https://cdn.tgdd.vn//News/1173869//23-730x408-1.jpg" alt="PC Gaming">
+            <div class="slide-content">
+                <h2>PC Gaming Hi-End</h2>
+                <p>Trải nghiệm game mượt mà</p>
+                <a th:href="@{/categories/2}" class="btn">Khám phá</a> </div>
+        </div>
+    </div>
+    <div class="slider-controls">
+        <button class="prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+<section class="featured-categories">
+    <div class="container">
+        <h2 class="section-title">Danh Mục Nổi Bật</h2>
+        <div class="categories-grid">
+            <a th:each="category : ${categories}" th:href="@{/categories/{id}(id=${category.id})}" class="category-card">
+                <img th:src="${category.thumbnail}" th:alt="${category.name}">
+                <h3 th:text="${category.name}">Laptop Gaming</h3>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="featured-products">
+    <div class="container">
+        <h2 class="section-title">Sản Phẩm Mới Nhất</h2>
+        <div class="product-grid">
+            <div class="product-card" th:each="product : ${latestProducts}">
+                <div class="product-image">
+                    <a th:href="@{/products/{id}(id=${product.id})}">
+                        <img th:src="${product.thumbnail}" th:alt="${product.title}">
+                    </a>
+                    <div class="product-badge" th:if="${product.discount > 0}" th:text="'-' + ${product.discount} + '%'">Mới</div>
+                    <div class="product-badge" th:if="${product.discount == 0 and product.createdAt != null and #temporals.diff(product.createdAt, T(java.time.LocalDateTime).now()).getDays() <= 7}">Mới</div>
+
+                    <div th:classappend="${product.inStock ? (product.inventoryStatus == 'Sắp hết hàng' ? 'low-stock' : 'in-stock') : 'out-of-stock'}"
+                         th:text="${product.inventoryStatus}" class="inventory-status">Còn hàng</div>
+                </div>
+                <div class="product-info">
+                    <a th:href="@{/products/{id}(id=${product.id})}"><h3 class="product-name" th:text="${product.title}"></h3></a>
+                    <div class="product-specs" style="display:none;">
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price" th:text="${#numbers.formatDecimal(product.currentPrice, 0, 'POINT', 0, 'COMMA') + 'đ'}"></span>
+                        <span class="old-price" th:if="${product.discount > 0}" th:text="${#numbers.formatDecimal(product.oldPrice, 0, 'POINT', 0, 'COMMA') + 'đ'}"></span>
+                    </div>
+                    <div class="product-rating">
+                        <i th:each="i : ${#numbers.sequence(1, 5)}"
+                           th:class="${i <= product.averageRating ? 'fas fa-star' : (i - 0.5 <= product.averageRating ? 'fas fa-star-half-alt' : 'far fa-star')}"></i>
+                        <span th:text="'(' + ${product.reviewCount} + ')'">(24)</span>
+                    </div>
+                    <button class="add-to-cart" th:disabled="${!product.inStock}">Thêm vào giỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="promotion-banner">
+    <div class="container">
+        <div class="banner-content">
+            <h2>Giảm giá đến 50%</h2>
+            <p>Cho tất cả phụ kiện Gaming trong tháng này</p>
+            <a th:href="@{/categories/accessories}" class="btn">Xem ngay</a> </div>
+    </div>
+</section>
+
+<section class="brands-section">
+    <div class="container">
+        <h2 class="section-title">Thương hiệu nổi bật</h2>
+        <div class="brands-grid">
+            <img src="https://i.pinimg.com/736x/11/ab/80/11ab80e1acf665c2d4c5534043213568.jpg" alt="ASUS">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpwLgZbc8XCf-MNPGthC4ec-D1duvkvO53vQ&s" alt="MSI">
+            <img src="https://i.pinimg.com/736x/ce/f7/5b/cef75bd7d3a2dc6f9937504e2130c0fa.jpg" alt="Logitech">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f251cd126326671.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Razer">
+            <img src="https://cwsmgmt.corsair.com/press/CORSAIRLogo2020_stack_K.png" alt="Corsair">
+        </div>
+    </div>
+</section>
+
+<div id="footer"></div>
+
+<script th:src="@{/script.js}"></script>
+
+<script>
+    // Logic cho Slider
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.slider .slide');
+        const prevBtn = document.querySelector('.slider-controls .prev');
+        const nextBtn = document.querySelector('.slider-controls .next');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Auto-play slider (optional)
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    });
+</script>
+
+<script>
+    // Giữ nguyên phần fetch header/footer nếu chúng là file HTML tĩnh
+    fetch("/header.html") // Đảm bảo đường dẫn này đúng với vị trí file header của bạn
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute("href").split("?")[0];
+                if (linkPath === currentPath) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+    fetch("/footer.html") // Đảm bảo đường dẫn này đúng với vị trí file footer của bạn
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        });
+</script>
+</body>
+</html>
