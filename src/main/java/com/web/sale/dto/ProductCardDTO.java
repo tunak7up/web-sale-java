@@ -1,5 +1,7 @@
 package com.web.sale.dto;
 
+import java.time.LocalDateTime;
+
 public class ProductCardDTO {
     private int id;
     private String title;
@@ -15,11 +17,22 @@ public class ProductCardDTO {
     private String storage;         // Dữ liệu giả định
     private Double averageRating;   // Dữ liệu giả định
     private Integer reviewCount;    // Dữ liệu giả định
+    private LocalDateTime createdAt;
 
     public ProductCardDTO() {
     }
 
     // --- Getters và Setters ---
+
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public int getId() {
         return id;
     }

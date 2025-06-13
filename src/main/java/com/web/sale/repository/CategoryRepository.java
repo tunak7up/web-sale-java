@@ -1,5 +1,5 @@
 // src/main/java/com/web/sale/services/CategoryRepository.java
-package com.web.sale.services;
+package com.web.sale.repository;
 
 import com.web.sale.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

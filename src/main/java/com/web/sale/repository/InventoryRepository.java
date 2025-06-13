@@ -1,4 +1,4 @@
-package com.web.sale.services;
+package com.web.sale.repository;
 
 import com.web.sale.models.Inventory;
 import com.web.sale.models.Product;

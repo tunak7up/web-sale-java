@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${category.name + ' | TechZone'}">Danh Mục Sản Phẩm | TechZone</title>
-    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-<div id="header"></div>
-
+<div th:replace="fragments/header :: commonHeader"></div>
 <section class="breadcrumb">
     <div class="container">
         <ul>
@@ -221,32 +220,9 @@
     </div>
 </main>
 
-<div id="footer"></div>
-
+<div th:replace="fragments/footer :: commonFooter"></div>
 <script th:src="@{/script.js}"></script>
 <script th:src="@{/category.js}"></script>
-<script>
-    // Giữ nguyên phần fetch header/footer nếu chúng là file HTML tĩnh
-    fetch("/header.html") // Đảm bảo đường dẫn này đúng với vị trí file header của bạn
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("header").innerHTML = data;
-            const currentPath = window.location.pathname.split("/").pop();
-            const navLinks = document.querySelectorAll(".nav-links a");
 
-            navLinks.forEach(link => {
-                const linkPath = link.getAttribute("href").split("?")[0];
-                if (linkPath === currentPath) {
-                    link.classList.add("active");
-                }
-            });
-        });
-
-    fetch("/footer.html") // Đảm bảo đường dẫn này đúng với vị trí file footer của bạn
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("footer").innerHTML = data;
-        });
-</script>
 </body>
 </html>

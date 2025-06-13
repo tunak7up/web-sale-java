@@ -6,10 +6,10 @@ import com.web.sale.models.Category;
 import com.web.sale.models.Inventory;
 import com.web.sale.models.Product;
 import com.web.sale.models.Store;
-import com.web.sale.services.CategoryRepository;
-import com.web.sale.services.InventoryRepository;
-import com.web.sale.services.ProductRepository;
-import com.web.sale.services.StoreRepository;
+import com.web.sale.repository.CategoryRepository;
+import com.web.sale.repository.InventoryRepository;
+import com.web.sale.repository.ProductRepository;
+import com.web.sale.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList; // Import ArrayList
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

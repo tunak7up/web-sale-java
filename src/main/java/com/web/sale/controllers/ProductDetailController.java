@@ -5,9 +5,9 @@ import com.web.sale.dto.ProductDetailDTO;
 import com.web.sale.models.Product;
 import com.web.sale.models.Inventory;
 import com.web.sale.models.Feedback; // Đã đổi từ Review sang Feedback
-import com.web.sale.services.ProductRepository;
-import com.web.sale.services.InventoryRepository;
-import com.web.sale.services.FeedbackRepository; // Đã đổi từ ReviewRepository sang FeedbackRepository
+import com.web.sale.repository.ProductRepository;
+import com.web.sale.repository.InventoryRepository;
+import com.web.sale.repository.FeedbackRepository; // Đã đổi từ ReviewRepository sang FeedbackRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

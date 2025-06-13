@@ -6,10 +6,10 @@ import com.web.sale.models.Category;
 import com.web.sale.models.Feedback;
 import com.web.sale.models.Inventory;
 import com.web.sale.models.Product;
-import com.web.sale.services.CategoryRepository;
-import com.web.sale.services.FeedbackRepository;
-import com.web.sale.services.InventoryRepository;
-import com.web.sale.services.ProductRepository;
+import com.web.sale.repository.CategoryRepository;
+import com.web.sale.repository.FeedbackRepository;
+import com.web.sale.repository.InventoryRepository;
+import com.web.sale.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -77,7 +76,7 @@ public class HomeController {
             } else {
                 dto.setCurrentPrice(0);
             }
-
+            dto.setCreatedAt(product.getCreatedAt());
             // Tính toán rating và reviewCount
             List<Feedback> feedbacks = feedbackRepository.findByProduct(product);
             dto.setReviewCount(feedbacks.size());

@@ -1,37 +1,59 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Header</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 <body>
-<header th:fragment="header"> <div class="container">
-  <div class="navbar">
-    <div class="logo">
-      <a th:href="@{/}"><i class="fas fa-laptop-code"></i> Tech<span>Zone</span></a>
-    </div>
-    <nav class="nav-links">
-      <a th:href="@{/}">Trang chủ</a>
-
-      <div class="dropdown">
-        <a class="dropbtn">Danh sách sản phẩm</a>
-
-        <div class="dropdown-content">
-          <a href="/categories/1">Laptop</a>
-          <a href="/categories/2">PC</a>
-          <a href="/categories/3">Màn hình</a>
-          <a href="/categories/4">Linh kiện</a>
-        </div>
+<header th:fragment="commonHeader">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a th:href="@{/}"><i class="fas fa-laptop-code"></i> Tech<span>Zone</span></a>
       </div>
-      <a th:href="@{/inventory}">Admin</a>
+      <nav class="nav-links">
+        <a th:href="@{/}">Trang chủ</a>
 
-    </nav>
-    <div class="nav-icons">
-      <a href="login.html" title="Đăng nhập"><i class="fas fa-user"></i></a>
-      <a href="account.html" title="Thông tin khách hàng"><i class="fa-solid fa-id-card"></i></a>
-      <a href="cart.html" title="Giỏ hàng" class="cart-icon active">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">3</span>
-      </a>
+        <div class="dropdown">
+          <a class="dropbtn">Danh sách sản phẩm</a>
+          <div class="dropdown-content">
+            <a th:href="@{/categories/1}">Laptop</a>
+            <a th:href="@{/categories/2}">PC</a>
+            <a th:href="@{/categories/3}">Linh kiện</a>
+            <a th:href="@{/categories/4}">Màn hình</a>
+            <a th:href="@{/categories/5}">Bàn phím</a>
+            <a th:href="@{/categories/6}">Chuột</a>
+            <a th:href="@{/categories/7}">Tai nghe</a>
+            <a th:href="@{/categories/8}">Loa</a>
+            <a th:href="@{/categories/9}">Thiết bị mạng</a>
+            <a th:href="@{/categories/10}">Phụ kiện khác</a>
+          </div>
+        </div>
+        <a th:href="@{/inventory}">Admin</a>
+      </nav>
+      <div class="nav-icons">
+        <div sec:authorize="!isAuthenticated()">
+          <a th:href="@{/login}" title="Đăng nhập"><i class="fas fa-user"></i></a>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+          <a th:href="@{/account}" title="Thông tin khách hàng"><i class="fa-solid fa-id-card"></i></a>
+          <form th:action="@{/logout}" method="post" style="display:inline;">
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+            <button type="submit" class="btn-icon" title="Đăng xuất" style="background: none; border: none; padding: 0; cursor: pointer;">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </form>
+        </div>
+
+        <a th:href="@{/cart}" title="Giỏ hàng" class="cart-icon active">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">3</span>
+        </a>
+      </div>
     </div>
   </div>
-</div>
 </header>
 </body>
 </html>

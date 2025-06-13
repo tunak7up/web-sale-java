@@ -1,0 +1,75 @@
+<!--<header>-->
+<!--    <div class="container">-->
+<!--      <div class="navbar">-->
+<!--        <div class="logo">-->
+<!--          <a href="../../static/index.html"><i class="fas fa-laptop-code"></i> Tech<span>Zone</span></a>-->
+<!--        </div>-->
+<!--        <nav class="nav-links">-->
+<!--          <a href="/static">Trang chủ</a>-->
+<!--          <a href="../../static/order-manage.html">Quản lý đơn hàng</a>-->
+<!--          <a href="/inventory">Quản lý kho</a>-->
+<!--          <a href="/products/add">Thêm Sản Phẩm Mới</a>-->
+<!--          <a href="../../static/tech-task.html">Nhiệm vụ kỹ thuật</a>-->
+<!--          <a href="../../static/user-management.html">Phân quyền</a>-->
+<!--        </nav>-->
+<!--        <div class="nav-icons">-->
+<!--          <div class="user-dropdown">-->
+<!--            <button class="user-btn">-->
+<!--              <i class="fas fa-user-circle"></i> Quản trị <i class="fas fa-caret-down"></i>-->
+<!--            </button>-->
+<!--            <div class="dropdown-content">-->
+<!--              <a href="../../static/account.html"><i class="fas fa-user"></i> Tài khoản</a>-->
+<!--              <a href="#"><i class="fas fa-cog"></i> Cài đặt</a>-->
+<!--              <a href="../../static/login.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </header>-->
+
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Header</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header th:fragment="adminHeader"> <div class="container">
+  <div class="navbar">
+    <div class="logo">
+      <a th:href="@{/admin}"><i class="fas fa-laptop-code"></i> Tech<span>Zone</span></a>
+    </div>
+    <nav class="nav-links">
+      <a th:href="@{/}">Trang chủ</a>
+      <a th:href="@{/admin/order-manage}">Quản lý đơn hàng</a>
+      <a th:href="@{/inventory}">Quản lý kho</a>
+      <a th:href="@{/products/add}">Thêm Sản Phẩm Mới</a>
+      <a th:href="@{/admin/tech-tasks}">Nhiệm vụ kỹ thuật</a>
+      <a th:href="@{/admin/users}">Phân quyền</a>
+    </nav>
+    <div class="nav-icons">
+      <div class="user-dropdown">
+        <button class="user-btn">
+          <i class="fas fa-user-circle"></i>
+          <span sec:authentication="name">Quản trị</span>
+          <i class="fas fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a th:href="@{/account}"><i class="fas fa-user"></i> Tài khoản</a>
+          <a th:href="@{#}"><i class="fas fa-cog"></i> Cài đặt</a> <form th:action="@{/logout}" method="post" style="display: block;">
+<!--          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+          <button type="submit"
+                  style="background: none; border: none; width: 100%; text-align: left; padding: 10px 15px; cursor: pointer; color: inherit; font-size: 1rem;">
+            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+          </button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+</body>
+</html>
